@@ -1,4 +1,5 @@
-class CreateItems < ActiveRecord::Migration[5.2]
+# db/migrate/[timestamp]_create_items.rb
+class CreateItems < ActiveRecord::Migration[5.0]
   def change
     create_table :items do |t|
       t.string :name
