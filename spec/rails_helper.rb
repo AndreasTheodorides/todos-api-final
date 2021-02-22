@@ -44,6 +44,7 @@ Shoulda::Matchers.configure do |config|
 end
 RSpec.configure do |config|
    # [...]
+
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
@@ -63,6 +64,13 @@ end
 # [...]
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # [...]
+RSpec.configure do |config|
+  # [...]
+  # previously `config.include RequestSpecHelper, type: :request`
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
+  # [...]
+end
 RSpec.configuration do |config|
   # [...]
   config.include RequestSpecHelper, type: :request
