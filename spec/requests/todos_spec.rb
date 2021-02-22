@@ -14,7 +14,7 @@ RSpec.describe 'Todos API', type: :request do
     before { get '/todos', params: {}, headers: headers }
 
     it 'returns todos' do
-      # Note `json` is a custom helper to parse JSON responses
+	  # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
@@ -52,14 +52,13 @@ RSpec.describe 'Todos API', type: :request do
     end
   end
 
-  # Test suite for POST /todos
-  ddescribe 'POST /todos' do
-    let(:valid_attributes) do
+  describe 'POST /todos' do
+     let(:valid_attributes) do
       # send json payload
       { title: 'Learn Elm', created_by: user.id.to_s }.to_json
     end
 
-    context 'when the request is valid' do
+    context 'when request is valid' do
       before { post '/todos', params: valid_attributes, headers: headers }
 
       it 'creates a todo' do
@@ -83,11 +82,9 @@ RSpec.describe 'Todos API', type: :request do
         expect(json['message'])
           .to match(/Validation failed: Title can't be blank/)
       end
+    end
   end
 
-
-
-  # Test suite for PUT /todos/:id
   describe 'PUT /todos/:id' do
     let(:valid_attributes) { { title: 'Shopping' }.to_json }
 
@@ -104,7 +101,6 @@ RSpec.describe 'Todos API', type: :request do
     end
   end
 
-  # Test suite for DELETE /todos/:id
   describe 'DELETE /todos/:id' do
     before { delete "/todos/#{todo_id}", params: {}, headers: headers }
 
